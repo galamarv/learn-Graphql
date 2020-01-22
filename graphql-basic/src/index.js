@@ -1,8 +1,36 @@
-import myLocation, {message, getGreeting} from './myModule';
-import penambahan , {kurang} from './math'
+import {GraphQLServer} from 'graphql-yoga';
 
-console.log(message);
-console.log(myLocation)
-console.log(getGreeting('Fattah'))
-console.log(penambahan(1,2))
-console.log(kurang(2,1))
+// Type definitions (schema)
+
+const typeDefs = `
+    type Query {
+        hello: String!
+        name: String!
+        location: String!
+    }
+`;
+
+// Resolvers
+
+const resolvers = {
+    Query: {
+        hello() {
+            return 'This is my first query!'
+        },
+        name() {
+            return 'Fattah'
+        },
+        location() {
+            return 'Malang'
+        }
+    }
+}
+
+const server = new GraphQLServer({
+    typeDefs,
+    resolvers
+});
+
+server.start(() => {
+    console.log("server is up");
+});
