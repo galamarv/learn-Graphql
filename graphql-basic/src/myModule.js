@@ -1,0 +1,1 @@
+const message = "Some message from myModule.js"
