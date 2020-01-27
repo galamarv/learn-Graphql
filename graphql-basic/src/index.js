@@ -4,11 +4,14 @@ import {GraphQLServer} from 'graphql-yoga';
 
 const typeDefs = `
     type Query {
-       title: String!
-       price: Float!
-       releaseYear: Int
-       rating: Float
-       inStock: Boolean!
+       post: Post!
+    }
+
+    type Post {
+        id: ID!
+        title: String!
+        body: String!
+        published: Boolean!
     }
 `;
 
@@ -16,20 +19,13 @@ const typeDefs = `
 
 const resolvers = {
     Query: {
-        title() {
-            return 'produk 1'
-        },
-        price() {
-            return 12345.12
-        },
-        releaseYear() {
-            return 1835
-        },
-        rating() {
-            return null
-        },
-        inStock() {
-            return false
+        post() {
+            return {
+                id: '123asd',
+                title: 'judul',
+                body: 'isi',
+                published: true
+            }
         }
     }
 }
