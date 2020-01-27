@@ -6,6 +6,7 @@ const typeDefs = `
     type Query {
        post: Post!
        add(a: Float!, b: Float!): Float!
+       adds(numbers: [Float!]!): Float!
     }
 
     type Post {
@@ -24,6 +25,15 @@ const resolvers = {
             //return `${args.a} + ${args.b} = ${args.a + args.b}`
             return args.a + args.b
         },
+        adds(parent, args, ctx, info) {
+            if (args.numbers.length === 0){
+                return 0
+            } else {
+                return args.numbers.reduce((accumulator, currentValue) => {
+                    return accumulator + currentValue
+                })
+            }
+        }, 
         post() {
             return {
                 id: '123asd',
