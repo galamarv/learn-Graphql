@@ -5,6 +5,7 @@ import {GraphQLServer} from 'graphql-yoga';
 const typeDefs = `
     type Query {
        post: Post!
+       add(a: Float!, b: Float!): Float!
     }
 
     type Post {
@@ -19,6 +20,10 @@ const typeDefs = `
 
 const resolvers = {
     Query: {
+        add(parent, args, ctx, info) {
+            //return `${args.a} + ${args.b} = ${args.a + args.b}`
+            return args.a + args.b
+        },
         post() {
             return {
                 id: '123asd',
